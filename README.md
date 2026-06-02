@@ -18,6 +18,7 @@ The visual below gives a quick intuition for how the transformed complex respons
   - `zeta_branching.py`: baseline recursive kernel and plot generation
   - `zeta_surrogate.py`: surrogate training and validation for `(alpha, cut_angle)`
   - `branched_mp4_zeta.py`: extended surrogate with `gamma` and animation support
+  - `navier_stokes_branching.py`: Navier-Stokes-inspired branching renderer using a phase integral kernel
 - `models/`: trained model checkpoints and cached datasets
   - `.pt` files: PyTorch model checkpoints
   - `.npz` files: cached generated datasets
@@ -44,6 +45,12 @@ The visual below gives a quick intuition for how the transformed complex respons
 - Can generate validation plots and cut-angle/alpha sweep animations.
 - Reads/writes model data in `models/` and media in `outputs/`.
 
+### `scripts/navier_stokes_branching.py`
+- Replaces the zeta kernel with a Navier-Stokes-inspired scalar field.
+- Uses the integral `int_0^1 exp(i * 2*pi * NS(z) * alpha) d alpha` as the complex response.
+- Produces depth, viscosity, and frequency sweep plots plus a hero shot.
+- Saves figures into `outputs/`.
+
 ## Typical usage
 
 Run from the repository root:
@@ -66,6 +73,7 @@ Optional examples:
 python scripts/branched_mp4_zeta.py --skip-validation
 python scripts/branched_mp4_zeta.py --param alpha --frames 80
 python scripts/branched_mp4_zeta.py --retrain
+python scripts/navier_stokes_branching.py --skip-show
 ```
 
 ## Notes
